@@ -1,3 +1,5 @@
+from math import sqrt
+
 class LargestPrimeFactor:
     """
     A very crude way of calculating prime
@@ -39,7 +41,15 @@ class LargestPrimeFactor:
         range function only accepts
         integer values.
         """
-        for n in range(3, int(self.number/2)):
+        for n in range(3, int(sqrt(self.number))):
+            """
+            After further research, we are able to use
+            'proof by contradiction' to confirm
+            any prime factors.
+
+            A good explanation for reference here:
+            http://mathandmultimedia.com/2012/06/02/determining-primes-through-square-root/
+            """
             if 0 != n % 2:
                 if self.isFactor(n):
                     if self.isPrime(n):
