@@ -6,6 +6,7 @@ class LargestGridProduct:
         self.digits = self.loadFile(directory)
 
         self.readHorizontal()
+        self.readVertical()
 
     def loadFile(self, directory):
         numbers = []
@@ -22,7 +23,7 @@ class LargestGridProduct:
 
             while len(row) > (index+3):
                 product = 1
-                
+
                 for item in row[index:index+4]:
                     product *= int(item)
 
@@ -32,6 +33,28 @@ class LargestGridProduct:
                 index += 1
 
     def readVertical(self):
+        v_index = 0
+        h_index = 0
+
+        while 20 > h_index:
+            while 20 > (v_index+3):
+                product = 1
+                subset = [
+                    self.digits[v_index][h_index],
+                    self.digits[v_index+1][h_index],
+                    self.digits[v_index+2][h_index],
+                    self.digits[v_index+3][h_index]
+                ]
+
+                for item in subset:
+                    product *= int(item)
+
+                if self.largest_product < product:
+                    self.largest_product = product
+
+                v_index += 1
+            h_index += 1
+            v_index = 0
         return
 
     def getProduct(self):
