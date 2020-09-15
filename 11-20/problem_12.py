@@ -6,11 +6,12 @@ class TriangularDivisors:
         value = 28
         index = 7
 
-        while self.limit > self.numberOfFactors(value):
-            index += 1
-            value = int((((index ** 2) + index) / 2))
-
-        print(value)
+        while True:
+            if self.limit > self.numberOfFactors(value):
+                index += 1
+                value = int((((index ** 2) + index) / 2))
+            else:
+                return value
 
     def nextTriangle(self):
         return
@@ -19,7 +20,7 @@ class TriangularDivisors:
         return
 
     def numberOfFactors(self, value):
-        factors = 2
+        factors = 3
 
         for n in range(2, int(value/2)):
             if self.isFactor(value, n):
@@ -33,4 +34,4 @@ class TriangularDivisors:
         else:
             return False
 
-TriangularDivisors(200).firstTriangle()
+print(TriangularDivisors(500).firstTriangle())
