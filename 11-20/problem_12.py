@@ -1,3 +1,5 @@
+from functools import reduce
+
 class TriangularDivisors:
     def __init__(self, limit):
         self.limit = limit
@@ -13,20 +15,11 @@ class TriangularDivisors:
             else:
                 return value
 
-    def nextTriangle(self):
-        return
-
-    def largestFactors(self, number):
-        return
-
     def numberOfFactors(self, value):
-        factors = 3
-
-        for n in range(2, int(value/2)):
-            if self.isFactor(value, n):
-                factors += 1
-
-        return factors
+        return len(set(
+            factor for n in range(1, int(value ** .5) + 1) if self.isFactor(value, n)
+            for factor in (n, value//n)
+        ))
 
     def isFactor(self, number, factor):
         if 0 == number % factor:
